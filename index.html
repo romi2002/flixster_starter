@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flixter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container column">
+        <div class="container title">
+            <h1>Flixter</h1>
+            <img src="https://via.placeholder.com/100" alt="">
+        </div>
+        <div class="container search">
+            <form id='search'>
+                <div class="form-container">
+                    <label for="search-input" class="text form-item">Search: </label><br>
+                    <input type="text" id="search-input" class="text form-item" name="search-input"><br>
+                    <input type="submit" class="text form-item" value="Search">
+                    <button type="button" id="close-search-btn">Clear Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="movies-grid container">
+        </div>
+        <button type="button" id="load-more-movies-btn">Load more!</button>
+    </div>
+    <div class="modal">
+        <div class="modal-content container">
+            <h1 id="movie-modal-title">MOVIE TITLE</h1>
+            <h6 id="movie-votes text">MOVIE VOTES</h6>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
