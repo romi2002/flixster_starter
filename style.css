@@ -13,12 +13,27 @@
     align-items: center;
 }
 
+body {
+    margin: 0;
+}
+
 .title {
     flex-grow: 1;
+    width: 100%;
     font-family: 'Bebas Neue', cursive;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    background-color: #B5FFFC;
+}
+
+.search {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #B5FFFC;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .form-item {
@@ -42,9 +57,15 @@ h6 {
     display: none;
 }
 
+body{
+    background-color: #86DBD8;
+}
+
 .movies-grid {
     flex-wrap: wrap;
     justify-content: center;
+    background-color: #86DBD8;
+    padding-top: 1em;
 }
 
 .text {
@@ -78,13 +99,14 @@ input{
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #86DBD8;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
     flex-direction: column;
     align-items: flex-start;
+    border-radius: 20px;
 }
 
 .spacer {
@@ -94,4 +116,31 @@ input{
 .modal-topbar {
     justify-content: space-between;
     align-items: stretch;
+    width: 100%;
+}
+
+.movie-card {
+    background-color: #498F8C;
+    margin: 1em;
+    border-radius: 20px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    transition: 0.2s all linear;
+}
+
+.movie-text {
+    color: whitesmoke;
+}
+
+.movie-poster {
+    border-radius: 20px;
+    padding-bottom: 0.25em;
+}
+
+#movie-modal-title{
+    background-color: #86DBD8;
 }

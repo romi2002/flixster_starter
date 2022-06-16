@@ -37,8 +37,8 @@ function addMovieToMovieGrid(movie){
     if(movie.poster_path == null) return;
     movieGridEl.innerHTML += `<div class="movie-card container column">
     <img class="movie-poster" src="${imageUrl}/w200/${movie.poster_path}" id=movie-img-${movie.id} alt="">
-    <h6 class="movie-title text" id=movie-title-${movie.id}>${movie.original_title}</h6>
-    <h6 class="movie-votes id=movie-votes-${movie.id} text">Vote Count: ${movie.vote_count}</h6>
+    <h6 class="movie-title text movie-text" id=movie-title-${movie.id}>${movie.original_title}</h6>
+    <h6 class="movie-votes id=movie-votes-${movie.id} text movie-text">Vote Count: ${movie.vote_count}</h6>
     </div>`
 }
 
@@ -106,7 +106,7 @@ function populateMovieGrid(movies){
     });
 
     let cards = document.querySelectorAll(".movie-poster")
-    cardgulghvihuvhtikhdhcrhjggjjnelterrs.forEach(card => {
+    cards.forEach(card => {
         card.addEventListener('click', (event) => {
             const id = event.target.id.split('-')[2]
             console.log(id)
