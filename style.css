@@ -26,12 +26,20 @@
 }
 
 h1 {
-    padding: 1em;
+    padding: 0.1em;
 }
 
 h6 {
     margin: 0.1em;
-    flex-wrap: column wrap;
+    flex-wrap: wrap;
+}
+
+.modal-subbar {
+    margin-right: 1em;
+}
+
+.hidden {
+    display: none;
 }
 
 .movies-grid {
@@ -53,8 +61,10 @@ input{
     align-content: flex-start;
     max-width: 200px;
 }
+.movies-grid {
+    flex-wrap: wrap;
+}
 .modal {
-    display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -75,4 +85,13 @@ input{
     width: 80%; /* Could be more or less, depending on screen size */
     flex-direction: column;
     align-items: flex-start;
+}
+
+.spacer {
+    flex-grow: 1
+}
+
+.modal-topbar {
+    justify-content: space-between;
+    align-items: stretch;
 }

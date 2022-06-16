@@ -30,10 +30,23 @@
         </div>
         <button type="button" id="load-more-movies-btn">Load more!</button>
     </div>
-    <div class="modal">
-        <div class="modal-content container">
-            <h1 id="movie-modal-title">MOVIE TITLE</h1>
-            <h6 id="movie-votes text">MOVIE VOTES</h6>
+    <div class="modal hidden" id="modal">
+        <div class="modal-content container" id="movie-modal">
+            <div class="container modal-topbar">
+                <h1 id="movie-modal-title" class="title">MOVIE TITLE</h1>
+                <div class="spacer"></div>
+                <button id="movie-modal-close-btn">Close</button>
+            </div>
+            <div class="container modal-subbar">
+                <h3 id="movie-modal-release-date" class="text modal-subbar">RELEASE DATE</h3>
+                <h3 id="movie-modal-runtime" class="text modal-subbar">MOVIE RUNTIME</h3>
+                <h3 id="movie-modal-genres" class="text modal-subbar">GENERA,GENERA,GENERA</h3>
+            </div>
+            <iframe width="420" height="315" class="hidden" id="movie-modal-video">
+
+            </iframe>
+            <p class="text" id="movie-modal-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo ullam quia vero repellendus libero necessitatibus sit numquam, laudantium a quidem.
+            </p>
         </div>
     </div>
     <script src="script.js"></script>

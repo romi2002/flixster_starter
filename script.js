@@ -8,6 +8,17 @@ const body = document.querySelector('body')
 const apiKey = "3dacf5741241655a8002cf11b96327be" //TODO Store this as a secret
 const apiUrl = `https://api.themoviedb.org/3/`
 
+const modalEl = {
+    'content': document.querySelector('#modal'),
+    'title': document.querySelector('#movie-modal-title'),
+    'releaseDate': document.querySelector('#movie-modal-release-date'),
+    'runtime': document.querySelector('#movie-modal-runtime'),
+    'genres': document.querySelector('#movie-modal-genres'),
+    'video' : document.querySelector("#movie-modal-video"),
+    'description': document.querySelector('#movie-modal-description'),
+    'close': document.querySelector('#movie-modal-close-btn')
+}
+
 let imageUrl = ``
 let currentLoadedPage = 0;
 let movieCards = ``
@@ -31,6 +42,22 @@ function addMovieToMovieGrid(movie){
     </div>`
 }
 
+async function fetchMovieVideo(id){
+    return fetch(apiUrl + `movie/${id}/videos?api_key=${apiKey}`).then(response => {
+        if(!response.ok){
+            throw new Error(`Request to TMDB failed with status ${response.status}`)
+        }
+
+        return response.json()
+    })
+}
+
+function setupYoutubePlayer(id){
+    console.log(id)
+    modalEl.video.src = `https://www.youtube.com/embed/${id}?&loop=1`
+
+}
+
 function populateMovieModal(id){
     fetch(apiUrl + `movie/${id}?api_key=${apiKey}`).then(response => {
         if(!response.ok){
@@ -39,7 +66,33 @@ function populateMovieModal(id){
 
         return response.json()
         }).then(data => {
+            modalEl.title.innerHTML = data.title
+            modalEl.releaseDate.innerHTML = `Release date: ${data['release_date']}`
+            modalEl.runtime.innerHTML = `${data['runtime']} minutes`
+            modalEl.genres.innerHTML = `${data['genres'].map(g => g.name).join(', ')}`
+            modalEl.description.innerHTML = data['overview']
+
+            fetchMovieVideo(id).then((data) => {
+                //Filter for trailer videos
+                console.log(data)
+                const videos = data.results.filter((video) => {
+                    return video.type === "Trailer"
+                })
+
+                //Show the first video
+                if(videos.length) {
+                    console.log(videos)
+                    setupYoutubePlayer(videos[0].key)
+                    modalEl.video.classList.remove('hidden')
+                } else {
+                    modalEl.video.classList.add('hidden')
+                }
+            })
+
+            modalEl.content.classList.remove('hidden')
+
             console.log(data)
+            console.log(data.genres)
         });
 }
 
@@ -49,12 +102,11 @@ function resetMovieGrid(movieGridEl){
 
 function populateMovieGrid(movies){
     movies.forEach(movie => {
-        console.log(movie)
         addMovieToMovieGrid(movie)
     });
 
     let cards = document.querySelectorAll(".movie-poster")
-    cards.forEach(card => {
+    cardgulghvihuvhtikhdhcrhjggjjnelterrs.forEach(card => {
         card.addEventListener('click', (event) => {
             const id = event.target.id.split('-')[2]
             console.log(id)
@@ -90,7 +142,7 @@ function searchAndPopulateMovies(query, page){
         return response.json()
     }).then(data => {
         console.log(data.results)
-        if(data.results.length != 0){
+        if(data.results.length !== 0){
             populateMovieGrid(data.results)
         }
         //TODO Handle empty grid!
@@ -112,12 +164,17 @@ window.onload = function () {
         console.log("Clearing search")
         resetMovieGrid(movieGridEl)
         populateWithPopularMovies(1)
+        searchInput.value = ''
     })
 
     loadMoreButton.addEventListener('click', event => {
         console.log("Load more")
         currentLoadedPage += 1
         lastLoadFunc(currentLoadedPage)
+    })
+
+    modalEl.close.addEventListener('click', event => {
+        modalEl.content.classList.add('hidden')
     })
 
     fetchTMBDConfig().then(response => {
@@ -129,5 +186,6 @@ window.onload = function () {
         imageUrl = data.images.secure_base_url
     }).then(data => {
         populateWithPopularMovies(1)
+        //populateMovieModal(752623)
     })
 }
