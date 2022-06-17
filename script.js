@@ -76,7 +76,7 @@ function populateMovieModal(id){
                 //Filter for trailer videos
                 console.log(data)
                 const videos = data.results.filter((video) => {
-                    return video.type === "Trailer"
+                    return video.type === "Trailer" && video.site === "YouTube"
                 })
 
                 //Show the first video
